@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Vetri's Portfolio</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <style>
+ /* Modern Glass Waterdrop Theme */
+ :root {
+ --primary-color: rgba(255, 255, 255, 0.9);
+ --secondary-color: rgba(255, 255, 255, 0.7);
+ --accent-color: #5e8bff;
+ --accent-hover: #7d9eff;
+ --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+ --blur-intensity: 16px;
+ --border-radius: 16px;
+ --spacing: 24px;
+ --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+ --drop-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+ --inner-glow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+ }
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+ body {
+ background: var(--background);
+ color: white;
+ min-height: 100vh;
+ overflow-x: hidden;
+ line-height: 1.6;
+ padding: 0;
+ }
+ .container {
+ width: 100%;
+ min-height: 100vh;
+ padding: var(--spacing);
+ position: relative;
+ overflow: hidden;
+ }
+ /* Waterdrop Background Effect */
+ body::before {
+ content: '';
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: radial-gradient(circle at 20% 30%, rgba(94, 139, 255, 0.15) 0%, transparent
+40%),
+ radial-gradient(circle at 80% 70%, rgba(255, 102, 204, 0.15) 0%, transparent 40%);
+ pointer-events: none;
+ z-index: -1;
+ }
+ /* Glass Effect Enhancements */
+ .glass-card, .glass-nav, .glass-circle, .glass-btn, .glass-image {
+ background: rgba(255, 255, 255, 0.08);
+ backdrop-filter: blur(var(--blur-intensity));
+ -webkit-backdrop-filter: blur(var(--blur-intensity));
+ border-radius: var(--border-radius);
+ border: 1px solid rgba(255, 255, 255, 0.1);
+ box-shadow: var(--drop-shadow), var(--inner-glow);
+ transition: var(--transition);
+ }
+ /* Hover Effects */
+ .glass-card:hover, .glass-btn:hover {
+ transform: translateY(-4px);
+ box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), var(--inner-glow);
+ border-color: rgba(255, 255, 255, 0.15);
+ }
+ /* Navigation */
+ .glass-nav {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 18px var(--spacing);
+ margin: -16px -16px var(--spacing) -16px;
+ position: sticky;
+ top: 16px;
+ z-index: 100;
+ }
+ .logo {
+ font-size: 1.5rem;
+ font-weight: 600;
+ letter-spacing: 0.5px;
+ }
+ .nav-links {
+ display: flex;
+ list-style: none;
+ }
+ .nav-links li a {
+ color: var(--secondary-color);
+ text-decoration: none;
+ margin-left: 30px;
+ font-weight: 500;
+ transition: var(--transition);
+ padding: 8px 16px;
+ border-radius: 50px;
+ font-size: 0.95rem;
+ }
+ .nav-links li a:hover, .nav-links li a.active {
+ color: white;
+ background: rgba(255, 255, 255, 0.15);
+ }
+ .menu-toggle {
+ display: none;
+ cursor: pointer;
+ font-size: 1.5rem;
+ padding: 8px;
+ border-radius: 50%;
+ position: relative;
+ }
+ .menu-toggle i {
+ transition: opacity 0.3s ease;
+ }
+ /* Page Container */
+ .page-container {
+ position: relative;
+ min-height: calc(100vh - 100px);
+ }
+ .page {
+ display: none;
+ animation: fadeIn 0.5s ease;
+ }
+ .page.active {
+ display: block;
+ }
+ @keyframes fadeIn {
+ from { opacity: 0; transform: translateY(20px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+ /* Home Page */
+ .hero {
+ display: flex;
+ padding: var(--spacing);
+ margin-bottom: var(--spacing);
+ align-items: center;
+ background: rgba(255, 255, 255, 0.05);
+ }
+ .hero-content {
+ flex: 1;
+ padding-right: 40px;
+ }
+ .hero-image {
+ flex: 1;
+ display: flex;
+ justify-content: center;
+ }
+ h1 {
+ font-size: 3.5rem;
+ margin-bottom: 15px;
+ font-weight: 700;
+ line-height: 1.2;
+ background: linear-gradient(to right, #fff 0%, var(--accent-color) 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+ .name-highlight {
+ display: inline-block;
+ }
+ .profession {
+ font-size: 1.3rem;
+ margin-bottom: 25px;
+ color: var(--secondary-color);
+ font-weight: 400;
+ }
+ .hero p {
+ margin-bottom: 30px;
+ font-size: 1.1rem;
+ max-width: 600px;
+ }
+ .glass-circle {
+ width: 280px;
+ height: 280px;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ overflow: hidden;
+ position: relative;
+ }
+ .glass-circle::after {
+ content: '';
+ position: absolute;
+ top: -50%;
+ left: -50%;
+ width: 200%;
+ height: 200%;
+ background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+ transform: rotate(30deg);
+ }
+ /* Skills Section */
+ .skills-section {
+ margin-top: 60px;
+ }
+ .section-title {
+ font-size: 2.2rem;
+ margin-bottom: 30px;
+ text-align: center;
+ position: relative;
+ display: inline-block;
+ left: 50%;
+ transform: translateX(-50%);
+ }
+ .section-title::after {
+ content: '';
+ position: absolute;
+ bottom: -10px;
+ left: 0;
+ width: 100%;
+ height: 2px;
+ background: linear-gradient(to right, transparent 0%, var(--accent-color) 50%, transparent
+100%);
+ }
+ .skills-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: var(--spacing);
+ }
+ .skill-card {
+ padding: 30px;
+ text-align: center;
+ transition: var(--transition);
+ }
+ .skill-card i {
+ font-size: 2.8rem;
+ margin-bottom: 20px;
+ color: var(--accent-color);
+ background: rgba(255, 255, 255, 0.1);
+ width: 80px;
+ height: 80px;
+ line-height: 80px;
+ border-radius: 50%;
+ }
+ .skill-card h3 {
+ margin-bottom: 15px;
+ font-size: 1.3rem;
+ }
+ .skill-card p {
+ color: var(--secondary-color);
+ font-size: 0.95rem;
+ }
+ /* Work Page */
+ .projects-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ gap: var(--spacing);
+ margin-top: var(--spacing);
+ }
+ .project-card {
+ padding: 25px;
+ transition: var(--transition);
+ }
+ .project-image {
+ width: 100%;
+ height: 220px;
+ margin-bottom: 20px;
+ background-size: cover;
+ background-position: center;
+ position: relative;
+ overflow: hidden;
+ border-radius: 12px;
+ }
+ .project-image::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 100%);
+ }
+ .project-card h3 {
+ margin-bottom: 12px;
+ font-size: 1.4rem;
+ }
+ .project-card p {
+ margin-bottom: 20px;
+ color: var(--secondary-color);
+ font-size: 0.95rem;
+ }
+ /* Contact Page */
+ .contact-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+ gap: var(--spacing);
+ margin-top: var(--spacing);
+ }
+ .contact-info, .contact-form {
+ padding: 40px;
+ }
+ .contact-info h2, .contact-form h2 {
+ margin-bottom: 25px;
+ font-size: 1.8rem;
+ }
+ .info-item {
+ display: flex;
+ align-items: center;
+ margin-bottom: 20px;
+ padding-bottom: 20px;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+ }
+ .info-item i {
+ margin-right: 15px;
+ color: var(--accent-color);
+ width: 24px;
+ text-align: center;
+ font-size: 1.1rem;
+ }
+ .social-links {
+ display: flex;
+ margin-top: 40px;
+ gap: 15px;
+ }
+ .glass-circle.small {
+ width: 48px;
+ height: 48px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition: var(--transition);
+ }
+ .glass-circle.small:hover {
+ background: rgba(255, 255, 255, 0.2);
+ transform: translateY(-5px) scale(1.1);
+ color: var(--accent-color);
+ }
+ /* Form Styles */
+ .form-group {
+ margin-bottom: 25px;
+ }
+ input, textarea {
+ width: 100%;
+ padding: 14px 18px;
+ border: none;
+ background: rgba(255, 255, 255, 0.1);
+ border-radius: var(--border-radius);
+ color: white;
+ font-size: 1rem;
+ transition: var(--transition);
+ border: 1px solid transparent;
+ }
+ input:focus, textarea:focus {
+ outline: none;
+ border-color: var(--accent-color);
+ background: rgba(255, 255, 255, 0.15);
+ box-shadow: 0 0 0 3px rgba(94, 139, 255, 0.2);
+ }
+ textarea {
+ min-height: 150px;
+ resize: vertical;
+ }
+ ::placeholder {
+ color: rgba(255, 255, 255, 0.5);
+ opacity: 1;
+ }
+ /* Button Styles */
+ .glass-btn {
+ padding: 14px 30px;
+ border: none;
+ color: white;
+ font-weight: 500;
+ cursor: pointer;
+ transition: var(--transition);
+ background: rgba(94, 139, 255, 0.2);
+ border: 1px solid rgba(94, 139, 255, 0.3);
+ font-size: 1rem;
+ letter-spacing: 0.5px;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ }
+ .glass-btn:hover {
+ background: rgba(94, 139, 255, 0.3);
+ transform: translateY(-3px);
+ color: white;
+ }
+ .glass-btn.small {
+ padding: 10px 20px;
+ font-size: 0.9rem;
+ }
+ /* Waterdrop Animation */
+ @keyframes waterdrop {
+ 0% { transform: scale(1); opacity: 1; }
+ 100% { transform: scale(1.5); opacity: 0; }
+ }
+ .waterdrop {
+ position: absolute;
+ width: 100px;
+ height: 100px;
+ background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+ border-radius: 50%;
+ animation: waterdrop 1.5s ease-out forwards;
+ pointer-events: none;
+ z-index: 10;
+ }
+ /* Touch Feedback */
+ .glass-btn:active, 
+ .glass-circle.small:active,
+ .nav-links li a:active {
+  transform: scale(0.95) !important;
+  opacity: 0.9;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+ }
+
+ @media (hover: none) and (pointer: coarse) {
+  .glass-btn, 
+  .glass-circle.small,
+  .nav-links li a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .glass-btn:active, 
+  .glass-circle.small:active,
+  .nav-links li a:active {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+ }
+
+ /* Mobile Form Inputs */
+ @media (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  .nav-links li a {
+    padding: 16px !important;
+  }
+  
+  .glass-btn {
+    min-width: 120px;
+    min-height: 48px;
+  }
+  
+  .glass-circle.small {
+    width: 56px !important;
+    height: 56px !important;
+  }
+ }
+ /* Responsive Styles */
+ @media (max-width: 1024px) {
+ :root {
+ --spacing: 20px;
+ --blur-intensity: 12px;
+ }
+ 
+ h1 {
+ font-size: 3rem;
+ }
+ }
+ @media (max-width: 768px) {
+ .nav-links {
+ position: fixed;
+ top: 80px;
+ left: 0;
+ width: 100%;
+ background: rgba(26, 26, 46, 0.95);
+ backdrop-filter: blur(20px);
+ -webkit-backdrop-filter: blur(20px);
+ flex-direction: column;
+ align-items: center;
+ padding: var(--spacing) 0;
+ clip-path: circle(0px at 90% -10%);
+ transition: all 0.7s ease-out;
+ pointer-events: none;
+ }
+ .nav-links.open {
+ clip-path: circle(1200px at 50% 50%);
+ pointer-events: all;
+ }
+ .nav-links li {
+ width: 100%;
+ text-align: center;
+ padding: 12px 0;
+ }
+ .nav-links li a {
+ margin: 0;
+ display: block;
+ padding: 12px;
+ font-size: 1.1rem;
+ }
+ .menu-toggle {
+ display: block;
+ }
+ .hero {
+ flex-direction: column;
+ text-align: center;
+ padding: 30px;
+ }
+ .hero-content {
+ padding-right: 0;
+ margin-bottom: 30px;
+ }
+ .hero-image {
+ margin-top: 30px;
+ }
+ .glass-circle {
+ width: 220px;
+ height: 220px;
+ }
+ .contact-container {
+ grid-template-columns: 1fr;
+ }
+ }
+ @media (max-width: 480px) {
+ :root {
+ --spacing: 16px;
+ --border-radius: 12px;
+ }
+ h1 {
+ font-size: 2.2rem;
+ }
+ .section-title {
+ font-size: 1.8rem;
+ }
+ .glass-circle {
+ width: 180px;
+ height: 180px;
+ }
+ 
+ .skills-grid, .projects-grid {
+ grid-template-columns: 1fr;
+ }
+ 
+ .contact-info, .contact-form {
+ padding: 25px;
+ }
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <!-- Navigation -->
+ <nav class="glass-nav">
+ <div class="logo">Portfolio</div>
+ <ul class="nav-links">
+ <li><a href="#" class="active" data-page="home">Home</a></li>
+ <li><a href="#" data-page="work">Work</a></li>
+ <li><a href="#" data-page="contact">Contact</a></li>
+ </ul>
+ <div class="menu-toggle">
+ <i class="fas fa-bars"></i>
+ <i class="fas fa-times" style="display: none;"></i>
+ </div>
+ </nav>
+ <!-- Page Content -->
+ <div class="page-container">
+ <!-- Home Page -->
+ <div class="page active" id="home-page">
+ <div class="hero glass-card">
+ <div class="hero-content">
+ <h1>Hello, I'm <span class="name-highlight">Vetri</span></h1>
+ <p class="profession">UI/UX Designer & Frontend Developer</p>
+ <p>Creating beautiful, functional interfaces with a focus on user experience.</p>
+ <button class="glass-btn">View My Work</button>
+ </div>
+ <div class="hero-image">
+ <div class="image-placeholder glass-circle">
+    <img src="https://github.com/vetriversion/myportfolio/mee.jpg">
+ </div>
+ </div>
+ </div>
+ <div class="skills-section">
+ <h2 class="section-title">My Skills</h2>
+ <div class="skills-grid">
+ <div class="skill-card glass-card">
+ <i class="fas fa-paint-brush"></i>
+ <h3>UI Design</h3>
+ <p>Creating visually appealing interfaces that enhance user experience.</p>
+ </div>
+ <div class="skill-card glass-card">
+ <i class="fas fa-code"></i>
+ <h3>Frontend Dev</h3>
+ <p>Building responsive, performant websites with modern technologies.</p>
+ </div>
+ <div class="skill-card glass-card">
+ <i class="fas fa-mobile-alt"></i>
+ <h3>Mobile Design</h3>
+ <p>Designing interfaces that work seamlessly across all devices.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ <!-- Work Page -->
+ <div class="page" id="work-page">
+ <h2 class="section-title">My Projects</h2>
+ <div class="projects-grid">
+ <div class="project-card glass-card">
+ <div class="project-image glass-image"></div>
+ <h3>Weather App</h3>
+ <p>A beautiful weather application with real-time data and forecasts.</p>
+ <button class="glass-btn small">View Details</button>
+ </div>
+ <div class="project-card glass-card">
+ <div class="project-image glass-image"></div>
+ <h3>E-commerce Site</h3>
+ <p>Full-featured online store with cart functionality and payment integration.</p>
+ <button class="glass-btn small">View Details</button>
+ </div>
+ <div class="project-card glass-card">
+ <div class="project-image glass-image"></div>
+ <h3>Travel Blog</h3>
+ <p>Interactive travel blog with location-based content and maps.</p>
+ <button class="glass-btn small">View Details</button>
+ </div>
+ <div class="project-card glass-card">
+ <div class="project-image glass-image"></div>
+ <h3>Fitness Tracker</h3>
+ <p>Mobile-first fitness application with workout plans and progress tracking.</p>
+ <button class="glass-btn small">View Details</button>
+ </div>
+ </div>
+ </div>
+ <!-- Contact Page -->
+ <div class="page" id="contact-page">
+ <div class="contact-container">
+ <div class="contact-info glass-card">
+ <h2>Get In Touch</h2>
+ <p>Feel free to reach out for collaborations or just a friendly hello.</p>
+ 
+ <div class="info-item">
+ <i class="fas fa-user"></i>
+ <span id="visitor-name">Mr.Vetri</span>
+ </div>
+ <div class="info-item">
+ <i class="fas fa-briefcase"></i>
+ <span id="visitor-profession">Realtime web designer</span>
+ </div>
+ <div class="info-item">
+ <i class="fas fa-envelope"></i>
+ <span id="visitor-email">mailtovetri2005@gmail.com</span>
+ </div>
+ 
+ <div class="social-links">
+ <a href="https://x.com/VetriVersion" class="glass-circle small"><i class="fab fa-twitter"></i></a>
+ <a href="https://www.linkedin.com/in/vetri-v-2aa484274?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BVledWwXaRwixksv6OfP5KQ%3D%3D" class="glass-circle small"><i class="fab fa-linkedin"></i></a>
+ <a href="https://github.com/vetriversion?tab=overview&from=2025-07-01&to=2025-07-31" class="glass-circle small"><i class="fab fa-github"></i></a>
+ <a href="#" class="glass-circle small"><i class="fab fa-dribbble"></i></a>
+ </div>
+ </div>
+ 
+ <div class="contact-form glass-card">
+ <h2>Contact Me</h2>
+ <form id="contactForm">
+ <div class="form-group">
+ <input type="text" id="name" placeholder="Your Name" required>
+ </div>
+ <div class="form-group">
+ <input type="text" id="profession" placeholder="Your Profession">
+ </div>
+ <div class="form-group">
+ <input type="email" id="email" placeholder="Your Email" required>
+ </div>
+ <div class="form-group">
+ <textarea id="message" placeholder="Your Message" required></textarea>
+ </div>
+ <button type="submit" class="glass-btn">Send Message</button>
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <script>
+ document.addEventListener('DOMContentLoaded', function() {
+ // Navigation
+ const navLinks = document.querySelectorAll('.nav-links li a');
+ const menuToggle = document.querySelector('.menu-toggle');
+ const navList = document.querySelector('.nav-links');
+ const pages = document.querySelectorAll('.page');
+ 
+ // Form elements
+ const contactForm = document.getElementById('contactForm');
+ const nameInput = document.getElementById('name');
+ const professionInput = document.getElementById('profession');
+ const emailInput = document.getElementById('email');
+ const messageInput = document.getElementById('message');
+ const visitorName = document.getElementById('visitor-name');
+ const visitorProfession = document.getElementById('visitor-profession');
+ const visitorEmail = document.getElementById('visitor-email');
+ 
+ // View Work button
+ const viewWorkBtn = document.querySelector('.hero .glass-btn');
+ 
+ // Waterdrop effect
+ const container = document.querySelector('.container');
+ 
+ // Create waterdrop effect on click
+ container.addEventListener('click', function(e) {
+ if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.tagName ===
+'INPUT' || e.target.tagName === 'TEXTAREA') return;
+ 
+ const drop = document.createElement('div');
+ drop.className = 'waterdrop';
+ drop.style.left = `${e.clientX - 50}px`;
+ drop.style.top = `${e.clientY - 50}px`;
+ container.appendChild(drop);
+ 
+ setTimeout(() => {
+ drop.remove();
+ }, 1500);
+ });
+ 
+ // Toggle mobile menu with proper icon switching
+ menuToggle.addEventListener('click', function() {
+ navList.classList.toggle('open');
+  
+ const barsIcon = this.querySelector('.fa-bars');
+ const timesIcon = this.querySelector('.fa-times');
+  
+ barsIcon.style.display = barsIcon.style.display === 'none' ? 'block' : 'none';
+ timesIcon.style.display = timesIcon.style.display === 'none' ? 'block' : 'none';
+ });
+ 
+ // Handle page navigation
+ navLinks.forEach(link => {
+ link.addEventListener('click', function(e) {
+ e.preventDefault();
+ 
+ // Get the target page
+ const targetPage = this.getAttribute('data-page');
+ 
+ // Update active nav link
+ navLinks.forEach(navLink => navLink.classList.remove('active'));
+ this.classList.add('active');
+ 
+ // Hide all pages
+ pages.forEach(page => page.classList.remove('active'));
+ 
+ // Show target page
+ document.getElementById(`${targetPage}-page`).classList.add('active');
+ 
+ // Close mobile menu if open
+ if (navList.classList.contains('open')) {
+ navList.classList.remove('open');
+ menuToggle.querySelector('.fa-bars').style.display = 'block';
+ menuToggle.querySelector('.fa-times').style.display = 'none';
+ }
+ 
+ // Scroll to top
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+ });
+ 
+ // View Work button click handler
+ if (viewWorkBtn) {
+ viewWorkBtn.addEventListener('click', function(e) {
+ e.preventDefault();
+ document.querySelector('[data-page="work"]').click();
+ });
+ }
+ 
+ // Contact form submission
+ contactForm.addEventListener('submit', function(e) {
+ e.preventDefault();
+ 
+ // Update visitor info
+ visitorName.textContent = nameInput.value || 'Your Name';
+ visitorProfession.textContent = professionInput.value || 'Your Profession';
+ visitorEmail.textContent = emailInput.value || 'your.email@example.com';
+ 
+ // Show success message
+ alert('Thank you for your message! I will get back to you soon.');
+ 
+ // Reset form
+ this.reset();
+ });
+ });
+ </script>
+</body>
+</html>
